@@ -1,0 +1,15 @@
+on:
+  schedule:
+    - cron: '20 * * * *'
+
+jobs:
+  space-pikopikoplanet-check-for-updates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd space-pikopikoplanet
+      - run: yarn install --production --frozen-lockfile
+      - run: yarn ts-node -T check-for-updates $(date -d '1 hour ago' +%s000)
+        env:
+          SPACE_PIKOPIKOPLANET_FIREBASE_PROJECT_ID: ${{ secrets.SPACE_PIKOPIKOPLANET_FIREBASE_PROJECT_ID }}
+          SPACE_PIKOPIKOPLANET_SLACK_WEBHOOK_URL: ${{ secrets.SPACE_PIKOPIKOPLANET_SLACK_WEBHOOK_URL }}

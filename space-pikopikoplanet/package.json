@@ -1,0 +1,13 @@
+{
+  "name": "space-pikopikoplanet",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@slack/webhook": "^6.0.0",
+    "dotenv": "^8.2.0",
+    "firebase": "^8.2.10",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  }
+}
