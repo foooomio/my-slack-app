@@ -5,9 +5,11 @@ on:
 jobs:
   space-pikopikoplanet-check-for-updates:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./space-pikopikoplanet
     steps:
       - uses: actions/checkout@v2
-      - run: cd space-pikopikoplanet
       - run: yarn install --production --frozen-lockfile
       - run: yarn ts-node -T check-for-updates $(date -d '1 hour ago' +%s000)
         env:
