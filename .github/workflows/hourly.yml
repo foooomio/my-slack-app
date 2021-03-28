@@ -24,6 +24,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn install --production --frozen-lockfile
-      - run: yarn ts-node -T kohhi-net-check-users
+      - run: yarn ts-node -T check-users
         env:
           KOHHI_NET_SLACK_WEBHOOK_URL: ${{ secrets.KOHHI_NET_SLACK_WEBHOOK_URL }}
