@@ -15,3 +15,15 @@ jobs:
         env:
           SPACE_PIKOPIKOPLANET_FIREBASE_PROJECT_ID: ${{ secrets.SPACE_PIKOPIKOPLANET_FIREBASE_PROJECT_ID }}
           SPACE_PIKOPIKOPLANET_SLACK_WEBHOOK_URL: ${{ secrets.SPACE_PIKOPIKOPLANET_SLACK_WEBHOOK_URL }}
+
+  kohhi-net-check-users:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./kohhi-net
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install --production --frozen-lockfile
+      - run: yarn ts-node -T kohhi-net-check-users
+        env:
+          KOHHI_NET_SLACK_WEBHOOK_URL: ${{ secrets.KOHHI_NET_SLACK_WEBHOOK_URL }}
