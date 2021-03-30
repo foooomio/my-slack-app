@@ -10,8 +10,13 @@ jobs:
         working-directory: ./space-pikopikoplanet
     steps:
       - uses: actions/checkout@v2
+      - id: last-execution
+        name: Get the last execution time
+        run: |
+          curl -O -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/foooomio/my-slack-app/actions/runs
+          echo "::set-output name=time::$(jq -r '.workflow_runs | map(select(.name | endswith("hourly.yml")))[0].updated_at' runs)"
       - run: yarn install --production --frozen-lockfile
-      - run: yarn ts-node -T check-for-updates $(date -d '1 hour ago' +%s000)
+      - run: yarn ts-node -T check-for-updates ${{ steps.last-execution.outputs.time }}
         env:
           SPACE_PIKOPIKOPLANET_FIREBASE_PROJECT_ID: ${{ secrets.SPACE_PIKOPIKOPLANET_FIREBASE_PROJECT_ID }}
           SPACE_PIKOPIKOPLANET_SLACK_WEBHOOK_URL: ${{ secrets.SPACE_PIKOPIKOPLANET_SLACK_WEBHOOK_URL }}

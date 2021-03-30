@@ -2,7 +2,7 @@ import { app, db } from './lib/firebase';
 import { slack } from './lib/slack';
 
 (async () => {
-  const lastExecution = Number(process.argv[2]);
+  const lastExecution = Date.parse(process.argv[2]!);
 
   if (isNaN(lastExecution)) {
     throw new Error(`Invalid argument: ${process.argv[2]}`);
