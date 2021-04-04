@@ -18,10 +18,12 @@ import { slack } from './lib/slack';
     .startAfter(lastExecution)
     .get();
 
-  queries.forEach(async (doc) => {
-    const url = queryUrl(doc.get('queryId'));
-    await slack.send(`Query updated: ${url}`);
-  });
+  await Promise.all(
+    queries.docs.map(async (doc) => {
+      const url = queryUrl(doc.get('queryId'));
+      await slack.send(`Query updated: ${url}`);
+    })
+  );
 
   // Check for new comments
   const comments = await db
@@ -30,10 +32,12 @@ import { slack } from './lib/slack';
     .startAfter(lastExecution)
     .get();
 
-  comments.forEach(async (doc) => {
-    const url = queryUrl(doc.get('queryId'));
-    await slack.send(`Comment updated: ${url}`);
-  });
+  await Promise.all(
+    comments.docs.map(async (doc) => {
+      const url = queryUrl(doc.get('queryId'));
+      await slack.send(`Comment updated: ${url}`);
+    })
+  );
 })()
   .catch(async (error: Error) => {
     await slack.send(`${error.name}: ${error.message}`);
