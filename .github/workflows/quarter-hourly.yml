@@ -4,7 +4,6 @@ on:
 
 jobs:
   kohhi-net-check-users:
-    if: ${{ false }} # temporarily disabled
     runs-on: ubuntu-latest
     defaults:
       run:
