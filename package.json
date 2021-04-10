@@ -4,6 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "copy-protos": "rsync -a --include='*/' --include='*.proto' --exclude='*' node_modules/@firebase/firestore/dist/protos dist",
     "build": "esbuild */*.ts --bundle --outdir=dist --platform=node --target=node14"
   },
   "dependencies": {
@@ -20,6 +21,6 @@
     "simple-git-hooks": "^2.3.1"
   },
   "simple-git-hooks": {
-    "pre-commit": "yarn build && git add dist"
+    "pre-commit": "yarn build && yarn copy-protos && git add dist"
   }
 }
