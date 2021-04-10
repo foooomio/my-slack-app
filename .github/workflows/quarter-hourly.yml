@@ -5,12 +5,8 @@ on:
 jobs:
   kohhi-net-check-users:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./kohhi-net
     steps:
       - uses: actions/checkout@v2
-      - run: yarn install --production --frozen-lockfile
-      - run: yarn ts-node -T check-users
+      - run: node dist/kohhi-net/check-users.js
         env:
           KOHHI_NET_SLACK_WEBHOOK_URL: ${{ secrets.KOHHI_NET_SLACK_WEBHOOK_URL }}

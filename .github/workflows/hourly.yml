@@ -5,9 +5,6 @@ on:
 jobs:
   space-pikopikoplanet-check-for-updates:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./space-pikopikoplanet
     steps:
       - uses: actions/checkout@v2
       - id: last-execution
@@ -15,8 +12,7 @@ jobs:
         run: |
           curl -fsSL -O https://api.github.com/repos/foooomio/my-slack-app/actions/workflows/hourly.yml/runs
           echo "::set-output name=time::$(jq -r '.workflow_runs[0].updated_at' runs)"
-      - run: yarn install --production --frozen-lockfile
-      - run: yarn ts-node -T check-for-updates ${{ steps.last-execution.outputs.time }}
+      - run: node dist/space-pikopikoplanet/check-for-updates.js ${{ steps.last-execution.outputs.time }}
         env:
           SPACE_PIKOPIKOPLANET_FIREBASE_PROJECT_ID: ${{ secrets.SPACE_PIKOPIKOPLANET_FIREBASE_PROJECT_ID }}
           SPACE_PIKOPIKOPLANET_SLACK_WEBHOOK_URL: ${{ secrets.SPACE_PIKOPIKOPLANET_SLACK_WEBHOOK_URL }}
