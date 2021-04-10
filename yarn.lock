@@ -661,6 +661,11 @@ semver@^6.2.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
+simple-git-hooks@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/simple-git-hooks/-/simple-git-hooks-2.3.1.tgz#cd400893fe7683d8cb07c357d20b3a2a9d75dd65"
+  integrity sha512-t1ZP5y6yGZmWjceOmTEr37g+TTot96DaAYYCnWOLu55squ/z60CiDV3Gdz2kEzmynEzgxyg4fCeJnsQWZdL4yg==
+
 tslib@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
