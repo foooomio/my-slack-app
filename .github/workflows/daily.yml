@@ -11,7 +11,7 @@ jobs:
         name: Get the last execution time
         run: |
           curl -fsSL -O https://api.github.com/repos/foooomio/my-slack-app/actions/workflows/daily.yml/runs
-          echo "::set-output name=time::$(jq -r '.workflow_runs[0].updated_at' runs)"
+          echo "::set-output name=time::$(jq -r '.workflow_runs | map(select(.status == "completed"))[0].updated_at' runs)"
       - run: node dist/chrome-web-store/check-for-updates.js ${{ steps.last-execution.outputs.time }}
         env:
           GENERAL_SLACK_WEBHOOK_URL: ${{ secrets.GENERAL_SLACK_WEBHOOK_URL }}
