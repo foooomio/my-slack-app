@@ -15,7 +15,7 @@ const slack = new IncomingWebhook(process.env.KOHHI_NET_SLACK_WEBHOOK_URL!);
     throw new Error(`${res.status} ${res.statusText} ${res.url}`);
   }
 
-  const { players } = await res.json();
+  const { players } = (await res.json()) as any;
 
   if (players.length) {
     const names = players.map((player: any) => player.name);

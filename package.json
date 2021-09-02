@@ -10,15 +10,14 @@
   "dependencies": {
     "@slack/webhook": "^6.0.0",
     "chrome-webstore": "^1.4.6",
-    "dotenv": "^8.2.0",
-    "firebase": "^8.3.3",
-    "node-fetch": "^2.6.1"
+    "dotenv": "^10.0.0",
+    "firebase": "^8.10.0",
+    "node-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node-fetch": "^2.5.10",
-    "esbuild": "^0.11.7",
-    "prettier": "^2.2.1",
-    "simple-git-hooks": "^2.3.1"
+    "esbuild": "^0.12.25",
+    "prettier": "^2.3.2",
+    "simple-git-hooks": "^2.6.1"
   },
   "simple-git-hooks": {
     "pre-commit": "yarn build && yarn copy-protos && git add dist"

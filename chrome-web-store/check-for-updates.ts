@@ -42,5 +42,5 @@ import {
   await Promise.all(promises);
 })().catch(async (error: Error) => {
   const slack = new IncomingWebhook(process.env.GENERAL_SLACK_WEBHOOK_URL!);
-  await slack.send(`${error.name}: ${error.message}`);
+  await slack.send(`[chrome-web-store] ${error.name}: ${error.message}`);
 });
