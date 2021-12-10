@@ -4,6 +4,7 @@ on:
 
 jobs:
   kohhi-net-check-users:
+    if: ${{ false }} # temporarily disabled
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
